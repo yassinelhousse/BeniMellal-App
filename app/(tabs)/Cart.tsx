@@ -2,17 +2,18 @@
 import React, { useEffect, useState, useRef } from "react";
 import { ScrollView, Image, View, Text, FlatList, StyleSheet, TouchableOpacity, Animated } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import { Link, router } from "expo-router";
+
 import { TextInput } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import axios from "axios";
+import { Link, router } from "expo-router";
 
 export default function () {
     const [data, setData] = useState([]);
 
 useEffect(() => {
-    axios.get("https://dummyjson.com/products")
-        .then(res => setData(res.data.products))
+    axios.get("https://6909d0261a446bb9cc201ef7.mockapi.io/places")
+        .then(res => setData(res.data))
         .catch(err => console.error(err));
 }, []);
     return (
@@ -46,23 +47,27 @@ useEffect(() => {
                 <ScrollView  >
                     <View style={{ marginTop: 20, alignItems : "center"}}>
                         {data.map((item, index) => (
+                           
                             <TouchableOpacity key={index}
+                            onPress={()=>{router.push(`/details/${item.id}`)}}
                                 style={{
                                     marginBottom: 15,
                                     width: 300,
-                                    backgroundColor: "#fff",
+                                   
                                     height: 400,
                                     marginRight: 10,
-                                    borderRadius: 20,
+                                    borderRadius: 30,
                                     overflow: "hidden",
                                     
                                 }}>
                                 <Image source={{ uri: item.images[0] }} style={{ width: "100%", height: "100%",position:"absolute" }} resizeMode="cover" />
                                 <View style={{marginTop:300}}>
-                                <Text style={{fontSize:30,}}>{item.title}</Text>
-                                <Text>{item.price} </Text>
+                                <Text style={{fontSize:30,color:"white"}}>{item.name}</Text>
+                                <Text></Text>
+                          
                                 </View>
                             </TouchableOpacity>
+                     
 
                         ))}
                     </View>
@@ -78,7 +83,7 @@ useEffect(() => {
                     <TouchableOpacity  onPress={() => router.push("/profil")}>
                         <Ionicons name="person-circle-outline" size={35} color='#007ACC' />
                     </TouchableOpacity>
-                    <TouchableOpacity  onPress={() => router.push("/animation")} >
+                    <TouchableOpacity  >
                         <Ionicons name="heart" size={30} color="#007ACC" />
                     </TouchableOpacity>
                 </View>
