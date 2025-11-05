@@ -12,8 +12,8 @@ export default function RootLayout() {
       
       <Stack>
         <Stack.Screen name="index" options={{ headerShown: false }} />
-        {/* {/* <Stack.Screen name="products" options={{headerShown:false}}/> */}
-        {/* <Stack.Screen name="products/[id]" options={{title:'Product details',headerShown:true}}/> */}
+       <Stack.Screen name="profil" options={{headerShown:false}}/>
+        <Stack.Screen name="animation" options={{title:'Product details',headerShown:true}}/>
         <Stack.Screen name="Cart" options={{headerShown:false}}/> */
 
       </Stack>

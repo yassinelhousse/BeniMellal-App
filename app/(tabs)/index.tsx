@@ -37,17 +37,17 @@ export default function Homepage() {
     return (
         <View style={{flex:1}}>
             
-            <View >
+            <View style={{height:800}} >
               <Animated.View style={[styles.imageContainer,  animatedStyle]}>
-                   <Image source={require("@/assets/images/home.jpeg")} style={styles.image}/>
+                   <Image source={require("@/assets/images/ahmed.jpeg")} style={styles.image}/>
                  <View style={{position:"absolute"}}>
-                   <Ionicons name="map" size={20} style={{position:"absolute", top:64,
-     left:120,}} color="white"/>
+                   <Ionicons name="map" size={20} style={{position:"absolute", top:64,left:120,}} color="white"/>
                    <Text style={styles.healing}>Morocoo</Text></View>
              </Animated.View>
             </View>
 
             <Animated.View style={[styles.tap,tapAnimatedStyle]}>
+             
                    <View>
                     <Text style={styles.h1} >Explore your journey only with us</Text>
                    </View>
@@ -57,18 +57,16 @@ export default function Homepage() {
                         <Text style={styles.text}>Go to enjoy </Text>
                     </TouchableOpacity>
                     </View>
-                    <View style={{flexDirection:"row",gap:40}}>
+                    <View style={{flexDirection:'row',gap:20}}>
                         <TouchableOpacity>
-                         
-                        <Ionicons name="logo-facebook" size={30} color="#007ACC"/>
+                            <Text style={styles.text1}>Sign In</Text>
                         </TouchableOpacity>
                         <TouchableOpacity>
-                        <Ionicons name="logo-instagram" size={30} color="#007ACC"/>
-                        </TouchableOpacity>  
-                          <TouchableOpacity>
-                        <Ionicons name="logo-twitter" size={30} color="#007ACC"/>
+                            <Text style={styles.text1} >Sign Up</Text>
                         </TouchableOpacity>
                     </View>
+                   
+               
              </Animated.View>
 
       
@@ -85,34 +83,40 @@ const styles = StyleSheet.create({
      fontWeight:"400",
      fontSize:20,
      fontFamily:"Bold",
-
-
-
-   
     },
     imageContainer:{
         width: "100%",
-        height: 500,
+        height: "100%",
         overflow: "hidden",
 
     },
     image: {
         width: 400,
-        height: 500,
+        height: 800,
         position:"relative"
 
     },
     tap: {
         position:"absolute",
         flex: 1,
+        marginLeft:5,
         top:400,
-        backgroundColor: "#E0F4FF",
-        height: 400,
-        width: 360,
+        height: 350,
+        width: 350,
         borderRadius:50,
         justifyContent:"space-evenly",
         alignItems: "center",
-    },
+        backgroundColor: "rgba(255,255,255,0.15)",
+        borderWidth: 1,
+        borderColor: "rgba(255,255,255,0.4)",
+        shadowColor: "#000",
+        shadowOpacity: 0.2,
+        shadowRadius: 10,
+        shadowOffset: { width: 0, height: 4 },
+      },
+      
+      
+  
     text:{
        backgroundColor:"#007AFF",
        borderRadius:20,
@@ -123,12 +127,22 @@ const styles = StyleSheet.create({
        paddingTop:8,
        fontWeight:"bold",
     },
+    text1:{   backgroundColor:"#007AFF",
+    borderRadius:20,
+    width:100,
+    height:40,
+    color:"white",
+    textAlign:"center",
+    paddingTop:8,
+    fontWeight:"bold",},
     h1:{
+        color:'white',
         fontWeight:"500",
         fontSize:30,
         margin:20,
         textAlign:"center",
-        fontFamily:"Bold"
+        fontFamily:"Bold",
+        elevation:1
     
         
     }
