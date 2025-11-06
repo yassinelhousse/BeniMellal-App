@@ -12,12 +12,12 @@ import { router } from "expo-router";
 
 export default function Homepage() {
 
-
+    const screenWidth = Dimensions.get("window").width;
 
     const scale = useSharedValue(1.2); 
     const opacity = useSharedValue(0); 
     const translateY = useSharedValue(360);
-    const screenWidth = Dimensions.get("window").width;
+  
     useEffect(() => {
       scale.value = withTiming(1, { duration: 3000 });
       opacity.value = withTiming(1, { duration: 1000 });
@@ -37,11 +37,11 @@ export default function Homepage() {
     return (
         <View style={{flex:1}}>
             
-            <View style={{height:800}} >
+            <View style={{height:"100%"}} >
               <Animated.View style={[styles.imageContainer,  animatedStyle]}>
                    <Image source={require("@/assets/images/ahmed.jpeg")} style={styles.image}/>
-                 <View style={{position:"absolute"}}>
-                   <Ionicons name="map" size={20} style={{position:"absolute", top:64,left:120,}} color="white"/>
+                 <View style={styles.haparent}>
+                   <Ionicons name="map" size={20} style={{position:"absolute",left:"19%",}} color="white"/>
                    <Text style={styles.healing}>Morocoo</Text></View>
              </Animated.View>
             </View>
@@ -57,7 +57,7 @@ export default function Homepage() {
                         <Text style={styles.text}>Go to enjoy </Text>
                     </TouchableOpacity>
                     </View>
-                    <View style={{flexDirection:'row',gap:20}}>
+                    <View style={{flexDirection:'row',gap:40}}>
                         <TouchableOpacity>
                             <Text style={styles.text1}>Sign In</Text>
                         </TouchableOpacity>
@@ -76,10 +76,11 @@ export default function Homepage() {
 
 }
 const styles = StyleSheet.create({
+    haparent:{position:"absolute",top:"9%",left:"25%",gap:20,width:"40%"},
      healing:{position:"absolute",
      color:"white",
-     top:60,
-     left:150,
+     top:"40%",
+     left:"35%",
      fontWeight:"400",
      fontSize:20,
      fontFamily:"Bold",
@@ -91,18 +92,18 @@ const styles = StyleSheet.create({
 
     },
     image: {
-        width: 400,
-        height: 800,
+        width: "100%",
+        height: "100%",
         position:"relative"
 
     },
     tap: {
         position:"absolute",
         flex: 1,
-        marginLeft:5,
-        top:400,
-        height: 350,
-        width: 350,
+        marginLeft:"5%",
+        top:"50%",
+        height: "45%",
+        width: "90%",
         borderRadius:50,
         justifyContent:"space-evenly",
         alignItems: "center",
@@ -120,21 +121,24 @@ const styles = StyleSheet.create({
     text:{
        backgroundColor:"#007AFF",
        borderRadius:20,
-       width:200,
+       width:"130%",
        height:40,
        color:"white",
        textAlign:"center",
        paddingTop:8,
        fontWeight:"bold",
+       alignSelf:"center"
     },
     text1:{   backgroundColor:"#007AFF",
     borderRadius:20,
-    width:100,
-    height:40,
+    width:"150%",
+   
+    height:45,
     color:"white",
     textAlign:"center",
-    paddingTop:8,
-    fontWeight:"bold",},
+    textAlignVertical:"center",
+    fontWeight:"bold",
+    alignSelf:"center",},
     h1:{
         color:'white',
         fontWeight:"500",
