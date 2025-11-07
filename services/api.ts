@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "https://6909d0261a446bb9cc201ef7.mockapi.io/places";
+const URL = "https://6909d0261a446bb9cc201ef7.mockapi.io/places";
 
 export type Place = {
   id: string;
@@ -16,7 +16,7 @@ export type Place = {
 
 export const fetchPlaces = async (): Promise<Place[]> => {
   try {
-    const response = await axios.get<Place[]>(API_URL);
+    const response = await axios.get<Place[]>(URL);
     return response.data;
   } catch (error) {
     console.error("Error fetching places:", error);
@@ -26,7 +26,7 @@ export const fetchPlaces = async (): Promise<Place[]> => {
 
 export const fetchPlaceById = async (id: string): Promise<Place> => {
   try {
-    const response = await axios.get<Place>(`${API_URL}/${id}`);
+    const response = await axios.get<Place>(`${URL}/${id}`);
     return response.data;
   } catch (error) {
     console.error(`Error fetching place ${id}:`, error);
