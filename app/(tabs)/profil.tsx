@@ -17,10 +17,10 @@ export default function profil() {
                 <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
                     <TouchableOpacity style={{ width: 30, height: 30, borderRadius: 20, backgroundColor: "white", alignItems: "center", justifyContent: "center" }}
                         onPress={() => router.push("/Cart")}>
-                        <Ionicons name="arrow-back-circle-outline" size={30} color='#007ACC' />
+                        <Ionicons name="arrow-back-circle-outline" size={31} color='#007ACC' />
                     </TouchableOpacity>
                     <TouchableOpacity style={{ width: 30, height: 30, borderRadius: 20, backgroundColor: "white", alignItems: "center", justifyContent: "center" }}>
-                        <Ionicons name="pencil-outline" size={20} color='#007ACC' />
+                        <Ionicons name="pencil-outline" size={21} color='#007ACC' />
                     </TouchableOpacity>
                     <TouchableOpacity style={{ width: 30, height: 30, borderRadius: 20, backgroundColor: "white", alignItems: "center", justifyContent: "center" }}>
                         <Ionicons name="settings" size={20} color='#007ACC' />
