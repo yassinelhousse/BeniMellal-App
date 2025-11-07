@@ -15,6 +15,7 @@ export default function RootLayout() {
         <Stack.Screen name="index" options={{ headerShown: false }} />
         <Stack.Screen name="profil" options={{headerShown:false}}/>
         <Stack.Screen name="notification" options={{ headerShown: false }} />
+        
         <Stack.Screen name="Cart" options={{headerShown:false}}/>
         <Stack.Screen name="[id]" options={{headerShown:false}}/>
 

@@ -42,7 +42,7 @@ export default function () {
 
 
     return (
-        <SafeAreaView style={{ backgroundColor: "#E0F4FF" }}>
+        <SafeAreaView style={{ backgroundColor: "#E0F4FF", flex: 1 }}>
 
             <View style={styles.parent}>
 
