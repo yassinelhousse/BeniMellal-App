@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, Image, ScrollView, ActivityIndicator, StyleSheet } from "react-native";
-import { useLocalSearchParams } from "expo-router";
+import { View, Text, Image, ScrollView, ActivityIndicator, StyleSheet, TouchableOpacity } from "react-native";
+import { router, useLocalSearchParams } from "expo-router";
+import { BlurView } from "expo-blur";
+import { Ionicons } from "@expo/vector-icons";
 
 
 export default function DetailsScreen() {
@@ -36,56 +38,71 @@ export default function DetailsScreen() {
     <ScrollView style={styles.container}>
       <View style={styles.imageContainer}>
         <Image
+       
           source={{
             uri:
               place.thumbnail ||
               (place.images?.[0]
                 ? place.images[0]
                 : "https://via.placeholder.com/400x250?text=No+Image"),
+                
+                
+                
           }}
           style={styles.image}
           resizeMode="cover"
+          
         />
+        <TouchableOpacity style={styles.save}
+           onPress={() =>{router.push("/Cart")}}>
+          
+          <Ionicons name="bookmark-outline" size={40} color={ "#f3f6f8ff"} />
+        
+        </TouchableOpacity>
+       
       </View>
 
       <View style={styles.content}>
-        <View style={styles.card}>
-          <Text style={styles.title}>{place.name}</Text>
-          
-          <View style={styles.locationContainer}>
-            <Text style={styles.locationIcon}>📍</Text>
-            <Text style={styles.locationText}>Caribbean Sea</Text>
-          </View>
-
-          <View style={styles.ratingContainer}>
-            <View style={styles.stars}>
-              <Text style={styles.starIcon}>⭐</Text>
-              <Text style={styles.starIcon}>⭐</Text>
-              <Text style={styles.starIcon}>⭐</Text>
-              <Text style={styles.starIcon}>⭐</Text>
-              <Text style={styles.starIconEmpty}>⭐</Text>
+        <View style={styles.cardWrapper}>
+          <BlurView intensity={20} tint="light" style={styles.card}>
+            
+            
+            <Text style={styles.title}>{place.name}</Text>
+            
+            <View style={styles.locationContainer}>
+              <Text style={styles.locationIcon}>📍</Text>
+              <Text style={styles.locationText}>Bni Mllal</Text>
             </View>
-            <Text style={styles.ratingText}>4.6 (23 reviews)</Text>
-          </View>
 
-          <View style={styles.divider} />
+            <View style={styles.ratingContainer}>
+              <View style={styles.stars}>
+                <Text style={styles.starIcon}>⭐</Text>
+                <Text style={styles.starIcon}>⭐</Text>
+                <Text style={styles.starIcon}>⭐</Text>
+                <Text style={styles.starIcon}>⭐</Text>
+                <Text style={styles.starIconEmpty}>⭐</Text>
+              </View>
+              <Text style={styles.ratingText}>4.6 (23 reviews)</Text>
+            </View>
 
-          <Text style={styles.sectionTitle}>About</Text>
-          <Text style={styles.description}>{place.description}</Text>
+            <View style={styles.divider} />
+
+            <Text style={styles.sectionTitle}>About</Text>
+            <Text style={styles.description}>{place.description}</Text>
+          </BlurView>
         </View>
 
-        <View style={styles.buttonContainer}>
-          <View style={styles.tabButton}>
-            <Text style={styles.tabButtonTextActive}>Nearby</Text>
-          </View>
-          <View style={[styles.tabButton, styles.tabButtonInactive]}>
-            <Text style={styles.tabButtonText}>Overview</Text>
-          </View>
-          <View style={[styles.tabButton, styles.tabButtonInactive]}>
-            <Text style={styles.tabButtonText}>Review</Text>
-          </View>
+        
+           <TouchableOpacity style={styles.back}
+           onPress={() =>{router.push("/Cart")}}>
+          
+          <Ionicons name="arrow-back-circle-outline" size={40} color={ "#f4f7f9ff"} />
+        
+        </TouchableOpacity>
+
+ 
         </View>
-      </View>
+      
     </ScrollView>
   );
 }
@@ -93,56 +110,86 @@ export default function DetailsScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "rgba(255,255,255,0.15)",
+    backgroundColor: "#E0F4FF",
   },
   loadingContainer: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    
+    backgroundColor: "rgba(255,255,255,0.15)",
   },
   imageContainer: {
-    marginTop: 0,
-   
+ 
   },
   image: {
     width: "100%",
-    height: 380,
-    borderBottomLeftRadius: 64,
-    borderBottomRightRadius: 64,
+    height: 400,
+    borderBottomRightRadius:60,
+    borderBottomLeftRadius:60,
 
   },
   content: {
     padding: 20,
     
-    
   },
-    card: {
-    backgroundColor: "rgba(255, 255, 255, 0.25)",
-    borderRadius: 24,
-    padding: 24,
+  save:{
+    top:-380,
+    left:380,
+
+  },
+  back:{
+    top:-750,
+
+  },
+  cardWrapper: {
+    zIndex: 1,
+    marginTop: -98,
+    backgroundColor: "rgba( 255, 255, 255, 0.3 )",
+    
+    backdropFilter: "blur( 10px )",
+    
     borderWidth: 1,
-    borderColor: "rgba(255, 255, 255, 0.4)",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 8,
-    },
-    shadowOpacity: 0.15,
-    shadowRadius: 32,
-    elevation: 8,
+    borderColor: "rgba( 255, 255, 255, 0.18 )",
+    
+    
+    borderRadius: 40,
+    width: "85%",
+    height:400,
+    paddingTop:4,
+    marginLeft:30,
+    overflow: "hidden",
+    
+   
+  },
+
+  card: {
+    
+    
+    padding: 24,
+    
+    
+    position: "relative",
     overflow: "hidden",
   },
+
+
+
+  
+
+  
   title: {
-    fontSize: 28,
+    fontSize: 25,
     fontWeight: "700",
-    color: "#2C3E50",
-    marginBottom: 12,
+    color: "#000000ff",
+    top:6,
+    
   },
   locationContainer: {
     flexDirection: "row",
     alignItems: "center",
     marginBottom: 12,
+    paddingTop:18,
+    fontSize:20,
   },
   locationIcon: {
     fontSize: 16,
@@ -150,7 +197,7 @@ const styles = StyleSheet.create({
   },
   locationText: {
     fontSize: 16,
-    color: "#7F8C8D",
+    color: "#4DB8C7",
     fontWeight: "500",
   },
   ratingContainer: {
@@ -188,7 +235,7 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
   description: {
-    fontSize: 15,
+    fontSize: 20,
     color: "#5D6D7E",
     lineHeight: 24,
     textAlign: "justify",
