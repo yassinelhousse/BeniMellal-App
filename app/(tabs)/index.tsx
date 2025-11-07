@@ -1,98 +1,154 @@
-import { Image } from 'expo-image';
-import { Platform, StyleSheet } from 'react-native';
+import React from "react";
+import { ImageBackground, View, StyleSheet, Text, Dimensions, TouchableOpacity } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { useEffect,useRef } from "react";
+import { Ionicons } from "@expo/vector-icons";
 
-import { HelloWave } from '@/components/hello-wave';
-import ParallaxScrollView from '@/components/parallax-scroll-view';
-import { ThemedText } from '@/components/themed-text';
-import { ThemedView } from '@/components/themed-view';
-import { Link } from 'expo-router';
+import { Image } from "react-native";
+import Animated, { useSharedValue, useAnimatedStyle, withTiming } from "react-native-reanimated";
+import { router } from "expo-router";
+// const { width, height } = Dimensions.get("window");
 
-export default function HomeScreen() {
-  return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12',
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <Link href="/modal">
-          <Link.Trigger>
-            <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-          </Link.Trigger>
-          <Link.Preview />
-          <Link.Menu>
-            <Link.MenuAction title="Action" icon="cube" onPress={() => alert('Action pressed')} />
-            <Link.MenuAction
-              title="Share"
-              icon="square.and.arrow.up"
-              onPress={() => alert('Share pressed')}
-            />
-            <Link.Menu title="More" icon="ellipsis">
-              <Link.MenuAction
-                title="Delete"
-                icon="trash"
-                destructive
-                onPress={() => alert('Delete pressed')}
-              />
-            </Link.Menu>
-          </Link.Menu>
-        </Link>
 
-        <ThemedText>
-          {`Tap the Explore tab to learn more about what's included in this starter app.`}
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          {`When you're ready, run `}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
-  );
+export default function Homepage() {
+
+    const screenWidth = Dimensions.get("window").width;
+
+    const scale = useSharedValue(1.2); 
+    const opacity = useSharedValue(0); 
+    const translateY = useSharedValue(360);
+  
+    useEffect(() => {
+      scale.value = withTiming(1, { duration: 3000 });
+      opacity.value = withTiming(1, { duration: 1000 });
+      translateY.value=withTiming(0,{duration:1000, delay:500})
+    }, []);
+    
+    const animatedStyle = useAnimatedStyle(() => ({
+      transform: [{ scale: scale.value }],
+      opacity: opacity.value
+    }));
+    const tapAnimatedStyle = useAnimatedStyle(() => ({
+        transform: [{ translateY: translateY.value }],
+    }));
+  
+
+
+    return (
+        <View style={{flex:1}}>
+            
+            <View style={{height:"100%"}} >
+              <Animated.View style={[styles.imageContainer,  animatedStyle]}>
+                  
+                 <View style={styles.haparent}>
+                   <Ionicons name="map" size={20} style={{position:"absolute",left:"19%",}} color="white"/>
+                   <Text style={styles.healing}>Morocoo</Text></View>
+             </Animated.View>
+            </View>
+
+            <Animated.View style={[styles.tap,tapAnimatedStyle]}>
+             
+                   <View>
+                    <Text style={styles.h1} >Explore your journey only with us</Text>
+                   </View>
+               
+                   <View>
+                    <TouchableOpacity  onPress={() => router.push("/Cart")}>
+                        <Text style={styles.text}>Go to enjoy </Text>
+                    </TouchableOpacity>
+                    </View>
+                    <View style={{flexDirection:'row',gap:40}}>
+                        <TouchableOpacity>
+                            <Text style={styles.text1}>Sign In</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity>
+                            <Text style={styles.text1} >Sign Up</Text>
+                        </TouchableOpacity>
+                    </View>
+                   
+               
+             </Animated.View>
+
+      
+
+        </View >
+    )
+
 }
-
 const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-  },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
-  },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
-  },
-});
+    haparent:{position:"absolute",top:"9%",left:"25%",gap:20,width:"40%"},
+     healing:{position:"absolute",
+     color:"white",
+     top:"40%",
+     left:"35%",
+     fontWeight:"400",
+     fontSize:20,
+     fontFamily:"Bold",
+    },
+    imageContainer:{
+        width: "100%",
+        height: "100%",
+        overflow: "hidden",
+
+    },
+    image: {
+        width: "100%",
+        height: "100%",
+        position:"relative"
+
+    },
+    tap: {
+        position:"absolute",
+        flex: 1,
+        marginLeft:"5%",
+        top:"50%",
+        height: "45%",
+        width: "90%",
+        borderRadius:50,
+        justifyContent:"space-evenly",
+        alignItems: "center",
+        backgroundColor: "rgba(255,255,255,0.15)",
+        borderWidth: 1,
+        borderColor: "rgba(255,255,255,0.4)",
+        shadowColor: "#000",
+        shadowOpacity: 0.2,
+        shadowRadius: 10,
+        shadowOffset: { width: 0, height: 4 },
+      },
+      
+      
+  
+    text:{
+       backgroundColor:"#007AFF",
+       borderRadius:20,
+       width:"130%",
+       height:40,
+       color:"white",
+       textAlign:"center",
+       paddingTop:8,
+       fontWeight:"bold",
+       alignSelf:"center"
+    },
+    text1:{   backgroundColor:"#007AFF",
+    borderRadius:20,
+    width:"150%",
+   
+    height:45,
+    color:"white",
+    textAlign:"center",
+    textAlignVertical:"center",
+    fontWeight:"bold",
+    alignSelf:"center",},
+    h1:{
+        color:'white',
+        fontWeight:"500",
+        fontSize:30,
+        margin:20,
+        textAlign:"center",
+        fontFamily:"Bold",
+        elevation:1
+    
+        
+    }
+  
+})
