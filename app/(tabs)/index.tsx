@@ -39,7 +39,7 @@ export default function Homepage() {
             
             <View style={{height:"100%"}} >
               <Animated.View style={[styles.imageContainer,  animatedStyle]}>
-              <Image  style={styles.image} source={require("@/.expo/images/ahmed.jpeg")}/>  <Image source={require("@/assets/images/ahmed.jpeg")} style={styles.image}/>
+              <Image  style={styles.image} source={require("@/.expo/images/ahmed.jpeg")}/> 
                  <View style={styles.haparent}>
                    <Ionicons name="map" size={20} style={{position:"absolute",left:"19%",}} color="white"/>
                    <Text style={styles.healing}>Morocoo</Text></View>

@@ -51,7 +51,6 @@ export default function CartScreen() {
         await AsyncStorage.setItem(`favorite:${place.id}`, JSON.stringify(place));
         setFavorites({ ...favorites, [place.id]: true });
 
-        // ✅ Navigate to favorites after adding
         router.push("/favorites");
       }
     } catch (error) {
